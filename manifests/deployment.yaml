@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejsapplicationwithdb
+  labels:
+    app: nodejsapplicationwithdb
+    kubernetes.azure.com/generator: devhub
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejsapplicationwithdb
+  template:
+    metadata:
+      labels:
+        app: nodejsapplicationwithdb
+    spec:
+      containers:
+        - name: nodejsapplicationwithdb
+          image: ClusterTestregistryForDB.azurecr.io/image-workflow-1732173095348:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
